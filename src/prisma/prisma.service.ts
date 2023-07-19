@@ -6,7 +6,11 @@ import { ConfigService } from '@nestjs/config';
 export class PrismaService extends PrismaClient {
     constructor () {
         super({
-
+            datasources: {
+                db: {
+                    
+                }
+            }
         })
     }
 }
