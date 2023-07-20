@@ -8,7 +8,7 @@ export class PrismaService extends PrismaClient {
         super({
             datasources: {
                 db: {
-                    url: config.get('mongodb+srv://testapi:1412@cluster0.ecqseqk.mongodb.net/test')
+                    url: config.get('DATABASE_URL'),
                 }
             }
         });
