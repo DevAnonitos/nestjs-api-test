@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
@@ -28,6 +28,11 @@ export class AuthService {
 
             return user;
         } catch (error: any) {
+            if(error.code === 'P2002') {
+                throw new ForbiddenException(
+                    'Credentials taken',
+                );
+            }
             console.log(error.message);
             throw error;
         }
