@@ -1,24 +1,24 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+// import Module Testing
+import {
+    ValidationPipe,
+    INestApplication
+} from "@nestjs/common";
+import { Test } from "@nestjs/testing";
+import * as pactum from "pactum";
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication;
+// Import Module app config
+import { AppModule } from "../src/app.module";
+import { AuthDto } from "../src/auth/dto";
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+// ServiceApi
+import { PrismaService } from "../src/prisma/prisma.service";
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
-  });
+describe('App e2e', () => {
+    beforeAll(async () => {
+        const moduleRef = await Test.createTestingModule({
+            imports: [AppModule],
+        }).compile();
+    });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
-  });
-});
+    it.todo('should pass');
+})
