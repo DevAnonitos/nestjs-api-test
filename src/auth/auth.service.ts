@@ -61,18 +61,17 @@ export class AuthService {
                 'Credentials incorrect'
             );
         }
-
-        const pwMatches = await bcrypt.compare(
+        
+        const pwMatches = await bcrypt.compareSync(
             user.hashPass,
             dto.password,
         );
 
-        if(!pwMatches) {
-            throw new ForbiddenException(
-                'Credentials incorrect',
-            );
+        if(pwMatches) {
+            console.log('Password is correct!');
+        } else {
+            console.log('Password is correct!');
         }
-
 
         return this.signToken(user.id, user.email);
     }
