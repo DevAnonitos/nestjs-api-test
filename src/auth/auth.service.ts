@@ -32,9 +32,9 @@ export class AuthService {
                 },
             });
 
-            return user;
+            return this.signToken(user.id, user.email);
         } catch (error: any) {
-            // Error if exists
+            //Check Error if exists
             if (error.code === 'P2002') {
                 throw new ForbiddenException(
                     'Credentials taken',
@@ -48,8 +48,61 @@ export class AuthService {
 
     // Func signIn->logic handle
     async signin(dto: AuthDto) {
-        return {
-            msg: 'I have signin'
+        // Find user store in Db->by email
+        const user = await this.prisma.user.findUnique({
+            where: {
+                email: dto.email,
+            },
+        });
+
+        // Check user is exist in db
+        if(!user) {
+            throw new ForbiddenException(
+                'Credentials incorrect'
+            );
         }
+
+        const pwMatches = await bcrypt.compare(
+            user.hashPass,
+            dto.password,
+        );
+
+        if(!pwMatches) {
+            throw new ForbiddenException(
+                'Credentials incorrect',
+            );
+        }
+
+
+        return this.signToken(user.id, user.email);
+    }
+
+    // Token
+    async signToken(
+            userId: string,
+            email: string
+        ): Promise<{ access_token: string }> {
+        // Payload data from user
+        const payload = {
+            sub: userId,
+            email,
+        };
+
+        // String Secret JWT
+        const secret =  this.config.get("JWT_SECRET");
+
+        // Create string token->encode data
+        const token = await this.jwt.signAsync(
+            payload,
+            {
+                expiresIn: '15m',
+                secret: secret,
+            },
+        );
+
+        // return token->store data user
+        return {
+            access_token: token,
+        };
     }
 }

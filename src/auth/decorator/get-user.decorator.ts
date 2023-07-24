@@ -1,4 +1,3 @@
-import * as request from 'supertest';
 import {
     createParamDecorator,
     ExecutionContext
