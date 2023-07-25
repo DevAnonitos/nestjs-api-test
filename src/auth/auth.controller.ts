@@ -6,14 +6,15 @@ import {
     Post,
     Req,
 } from '@nestjs/common';
-import { Request } from "express";
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto';
+import { SkipThrottle } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthController{
     constructor(private authService: AuthService) {}
 
+    @SkipThrottle()
     @Post('signup')
     signup(@Body() dto: AuthDto) {
 
