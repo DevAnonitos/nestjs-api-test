@@ -30,7 +30,7 @@ describe('App e2e', () => {
         );
         // Init testing host in port 3333
         await app.init();
-        await app.listen(3333);
+        await app.listen(4444);
 
     });
 
