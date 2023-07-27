@@ -2,6 +2,7 @@ import {
     IsEmail,
     IsNotEmpty,
     IsString,
+    IsStrongPassword,
 } from "class-validator";
 
 export class AuthDto {
@@ -11,5 +12,6 @@ export class AuthDto {
 
     @IsString()
     @IsNotEmpty()
+    @IsStrongPassword()
     password: string;
 }
