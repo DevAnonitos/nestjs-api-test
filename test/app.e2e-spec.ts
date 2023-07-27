@@ -26,12 +26,20 @@ describe('App e2e', () => {
         app.useGlobalPipes(
             new ValidationPipe({
                 whitelist: true,
-            })
+            }),
         );
         // Init testing host in port 3333
         await app.init();
         await app.listen(4444);
 
+        // Import Prisma Db test service
+        prisma = app.get(PrismaService);
+        await prisma.cleanDb();
+
+        // Add pactum libs
+        pactum.request.setBaseUrl(
+            'http://localhost:3333'
+        )
     });
 
     // Close app test
