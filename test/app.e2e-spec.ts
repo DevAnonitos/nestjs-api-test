@@ -12,6 +12,7 @@ import { AuthDto } from "../src/auth/dto";
 
 // ServiceApi
 import { PrismaService } from "../src/prisma/prisma.service";
+import passport from "passport";
 
 describe('App e2e', () => {
     let app: INestApplication;
@@ -49,33 +50,45 @@ describe('App e2e', () => {
 
     describe('Auth', () => {
         const dto: AuthDto = {
-            email: "DarkMode@gmail.com",
-            password: 'NodeCodeBroHero.123@'
+            email: "vlad2@gmail.com",
+            password: 'No2de@241241.11'
         }
+        // Test SignUp
         describe('Signup', () => {
             it('should throw if email empty', () => {
                 return pactum
                     .spec()
-                    .post('http://localhost:3333/auth/signup')
-                    .withBody(dto)
-                    .expectStatus(201)
+                    .post('/auth/signup')
+                    .withBody({
+                        password: dto.password,
+                    })
+                    .expectStatus(400)
             })
-        })
-    });
-
-    describe('User', () => {
-        describe('GetUser', () => {
-            it('should get current user', () => {
+            it('Should throw if password empty', () => {
                 return pactum
                     .spec()
-                    .get('/users/user')
-                    .withHeaders({
-                        Authorization: 'Bearer $S{userAt}',
+                    .post('/auth/signup')
+                    .withBody({
+                        email: dto.email,
                     })
-                    .expectStatus(200);
+                    .expectStatus(400);
+            });
+            it('should throw if no body provided', () => {
+                return pactum
+                    .spec()
+                    .post('/auth/signup')
+                    .expectStatus(400);
+            });
+            it('should signup', () => {
+                return pactum
+                    .spec()
+                    .post('/auth/signup')
+                    .withBody(dto)
+                    .expectStatus(201);
             });
         });
-    })
+    });
+
 
     it.todo('should pass');
     it.todo('should pass 2');
