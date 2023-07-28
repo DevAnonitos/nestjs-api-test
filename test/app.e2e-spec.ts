@@ -47,6 +47,22 @@ describe('App e2e', () => {
         app.close();
     }});
 
+    describe('Auth', () => {
+        const dto: AuthDto = {
+            email: "DarkMode@gmail.com",
+            password: 'NodeCodeBroHero.123@'
+        }
+        describe('Signup', () => {
+            it('should throw if email empty', () => {
+                return pactum
+                    .spec()
+                    .post('http://localhost:3333/auth/signup')
+                    .withBody(dto)
+                    .expectStatus(201)
+            })
+        })
+    });
+
     it.todo('should pass');
     it.todo('should pass 2');
 })
