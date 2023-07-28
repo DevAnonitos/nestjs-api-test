@@ -63,6 +63,20 @@ describe('App e2e', () => {
         })
     });
 
+    describe('User', () => {
+        describe('GetUser', () => {
+            it('should get current user', () => {
+                return pactum
+                    .spec()
+                    .get('/users/user')
+                    .withHeaders({
+                        Authorization: 'Bearer $S{userAt}',
+                    })
+                    .expectStatus(200);
+            });
+        });
+    })
+
     it.todo('should pass');
     it.todo('should pass 2');
 })
