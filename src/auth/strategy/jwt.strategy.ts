@@ -19,7 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             secretOrKey: config.get('JWT_SECRET'),
         });
     }
-
+    // Validate func to req
     async validate(payload: {
         sub: string,
         email: string,

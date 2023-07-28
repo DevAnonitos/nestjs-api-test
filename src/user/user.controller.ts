@@ -15,19 +15,19 @@ import { JwtGuard } from "../auth/guard";
 @Controller('users')
 export class UserController {
     constructor(private userService: UserService) {}
+    // Get user API
     @Get('user')
     getUsers(@GetUser() user: User) {
         return user;
     }
 
+    // Edit User API
     @Patch()
     editUser(
         @GetUser('id') userId: string,
         @Body() dto: EditUserDto,
     ) {
-        console.log({
-            message: dto,
-        })
+
         return this.userService.editUser(userId, dto);
     }
 }
