@@ -8,5 +8,4 @@ import { PrismaService } from "../prisma/prisma.service";
 export class BookmarkService {
     constructor(private prisma: PrismaService) {}
 
-    
 }

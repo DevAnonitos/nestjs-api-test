@@ -15,7 +15,10 @@ import { GetUser } from "../auth/decorator";
 import { JwtGuard } from "../auth/guard";
 import { BookmarkService } from "./bookmark.service";
 
+@UseGuards(JwtGuard)
 @Controller('bookmarks')
 export class BookMarkController {
-    
+    // Create constructor bookMarkService
+    constructor(private bookmarkService: BookmarkService) {}
+
 }
