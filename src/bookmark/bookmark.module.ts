@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-// import { BookmarkService } from './bookmark.service';
-// import { BookMarkController } from './bookmark.controller';
+import { BookmarkService } from './bookmark.service';
+import { BookMarkController } from './bookmark.controller';
 
 @Module({
-    // controllers: [BookMarkController],
-    // providers: [BookmarkService],
+    controllers: [BookMarkController],
+    providers: [BookmarkService],
 })
 export class BookmarkModule {}
