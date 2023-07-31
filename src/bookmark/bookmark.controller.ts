@@ -13,6 +13,7 @@ import {
 } from "@nestjs/common";
 import { GetUser } from "../auth/decorator";
 import { JwtGuard } from "../auth/guard";
+import { CreateBookmarkDto } from "./dto";
 import { BookmarkService } from "./bookmark.service";
 
 @UseGuards(JwtGuard)
