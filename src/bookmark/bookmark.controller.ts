@@ -13,7 +13,10 @@ import {
 } from "@nestjs/common";
 import { GetUser } from "../auth/decorator";
 import { JwtGuard } from "../auth/guard";
-import { CreateBookmarkDto } from "./dto";
+import {
+    CreateBookmarkDto,
+    EditBookmarkDto
+} from "./dto";
 import { BookmarkService } from "./bookmark.service";
 
 @UseGuards(JwtGuard)
@@ -21,5 +24,5 @@ import { BookmarkService } from "./bookmark.service";
 export class BookMarkController {
     // Create constructor bookMarkService
     constructor(private bookmarkService: BookmarkService) {}
-
+    
 }
