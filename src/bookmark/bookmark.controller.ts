@@ -24,5 +24,15 @@ import { BookmarkService } from "./bookmark.service";
 export class BookMarkController {
     // Create constructor bookMarkService
     constructor(private bookmarkService: BookmarkService) {}
-    
+
+    @Post()
+    createBookmark(
+        @GetUser('id') userIds: [],
+        @Body() dto: CreateBookmarkDto
+    ) {
+        return this.bookmarkService.createBookmark(
+            userIds,
+            dto,
+        );
+    }
 }
