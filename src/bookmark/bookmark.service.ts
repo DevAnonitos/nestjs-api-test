@@ -8,7 +8,6 @@ import {
     EditBookmarkDto
 } from "./dto";
 
-
 @Injectable()
 export class BookmarkService {
     constructor(private prisma: PrismaService) {}
@@ -19,13 +18,12 @@ export class BookmarkService {
     async createBookmark(
         userIds: string,
         dto: CreateBookmarkDto,
-      ) {
-        const bookmark =
-            await this.prisma.bookmark.create({
-                data: {
-                userIds,
+    ) {
+        const bookmark = await this.prisma.bookmark.create({
+            data: {
+                userIds: userIds,
                 ...dto,
-                },
+            },
         });
 
         return bookmark;

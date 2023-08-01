@@ -30,7 +30,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.4",
     "@nestjs/throttler": "^4.2.1",
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "^5.1.0",
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
