@@ -8,20 +8,24 @@ import {
     EditBookmarkDto
 } from "./dto";
 
+
 @Injectable()
 export class BookmarkService {
     constructor(private prisma: PrismaService) {}
 
+    // getBookMarks
+
     // CreateBookmark
     async createBookmark(
-        userIds: [],
+        userIds: string,
         dto: CreateBookmarkDto,
-    ) {
-        const bookmark = await this.prisma.bookmark.create({
-            data: {
+      ) {
+        const bookmark =
+            await this.prisma.bookmark.create({
+                data: {
                 userIds,
                 ...dto,
-            },
+                },
         });
 
         return bookmark;

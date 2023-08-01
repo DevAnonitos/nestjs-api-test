@@ -25,9 +25,9 @@ export class BookMarkController {
     // Create constructor bookMarkService
     constructor(private bookmarkService: BookmarkService) {}
 
-    @Post()
+    @Post('createBookmarks')
     createBookmark(
-        @GetUser('id') userIds: [],
+        @GetUser('id') userIds: string,
         @Body() dto: CreateBookmarkDto
     ) {
         return this.bookmarkService.createBookmark(

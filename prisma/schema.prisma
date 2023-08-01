@@ -35,7 +35,7 @@ model Bookmark {
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 
-  userIds String[] @db.ObjectId
+  userIds String @db.ObjectId
   user    User     @relation(fields: [userIds], references: [id])
 
   @@map("bookmarks")
