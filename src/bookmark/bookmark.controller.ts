@@ -57,5 +57,16 @@ export class BookMarkController {
         );
     }
 
-
+    @Patch(':id')
+    editBookmarkById(
+        @GetUser('id') userIds: string,
+        @Param('id') bookmarkId: string,
+        @Body() dto: EditBookmarkDto,
+    ) {
+        return this.bookmarkService.editBookmarkId(
+            userIds,
+            bookmarkId,
+            dto,
+        );
+    }
 }

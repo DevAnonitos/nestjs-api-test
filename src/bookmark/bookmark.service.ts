@@ -45,4 +45,33 @@ export class BookmarkService {
 
         return bookmark;
     }
+
+    // EditBookmarkId
+    async editBookmarkId (
+        userIds: string,
+        bookmarkId: string,
+        dto: EditBookmarkDto,
+    ) {
+        const bookmark = await this.prisma.bookmark.findUnique({
+            where: {
+                id: bookmarkId,
+            }
+        });
+
+        if(!bookmark || bookmark.userIds !== userIds) {
+            throw new ForbiddenException(
+                "Access to resource deny!!!"
+            );
+        }
+
+
+        return this.prisma.bookmark.update({
+            where: {
+                id: bookmarkId,
+            },
+            data: {
+                ...dto,
+            },
+        });
+    }
 }
