@@ -57,6 +57,7 @@ export class BookMarkController {
         );
     }
 
+    //route editBookmark
     @Patch(':id')
     editBookmarkById(
         @GetUser('id') userIds: string,
@@ -67,6 +68,19 @@ export class BookMarkController {
             userIds,
             bookmarkId,
             dto,
+        );
+    }
+
+    //route Delete BookmarkId
+    @HttpCode(HttpStatus.NO_CONTENT)
+    @Delete(":id")
+    deleteBookmarkById(
+        @GetUser('id') userIds: string,
+        @Param('id') bookmarkId: string,
+    ) {
+        return this.bookmarkService.deleteBookmarkById(
+            userIds,
+            bookmarkId,
         );
     }
 }
