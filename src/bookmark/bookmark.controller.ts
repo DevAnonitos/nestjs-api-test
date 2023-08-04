@@ -25,6 +25,27 @@ export class BookMarkController {
     // Create constructor bookMarkService
     constructor(private bookmarkService: BookmarkService) {}
 
+    //route GetBookmarks
+    @Get('getBookmarks')
+    getBookmarks(@GetUser('id') userIds: string) {
+        return this.bookmarkService.getBookmarks(
+            userIds,
+        );
+    }
+
+    // Route getBookmarksById
+    @Get(":id")
+    getBookmarkById(
+        @GetUser('id') userIds: string,
+        @Param('id') bookmarkId: string
+    ) {
+        return this.bookmarkService.getBookmarkById(
+            userIds,
+            bookmarkId,
+        );
+    }
+
+    // route createBookmarks
     @Post('createBookmarks')
     createBookmark(
         @GetUser('id') userIds: string,
@@ -35,4 +56,6 @@ export class BookMarkController {
             dto,
         );
     }
+
+
 }

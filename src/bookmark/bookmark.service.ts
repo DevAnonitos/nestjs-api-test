@@ -13,6 +13,23 @@ export class BookmarkService {
     constructor(private prisma: PrismaService) {}
 
     // getBookMarks
+    getBookmarks(userIds: string) {
+        return this.prisma.bookmark.findMany({
+            where: {
+                userIds,
+            }
+        })
+    }
+
+    // getBookmarksById
+    getBookmarkById(userIds: string, bookmarkId: string) {
+        return this.prisma.bookmark.findFirst({
+            where: {
+                id: bookmarkId,
+                userIds,
+            }
+        })
+    }
 
     // CreateBookmark
     async createBookmark(
