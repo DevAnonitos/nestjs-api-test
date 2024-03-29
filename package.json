@@ -29,7 +29,7 @@
     "@nestjs/jwt": "^10.1.0",
     "@nestjs/microservices": "^10.2.2",
     "@nestjs/passport": "^10.0.0",
-    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/platform-express": "^10.3.7",
     "@nestjs/platform-socket.io": "^10.2.4",
     "@nestjs/swagger": "^7.1.4",
     "@nestjs/throttler": "^4.2.1",
